@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+project.ext {
+    cucumberVersion = '4.7.4'
+    junitVersion = '4.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
+    testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
+    testCompile 'junit:junit:' + junitVersion
+    compile 'com.google.guava:guava:20.0'
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+mainClassName = 'ohtu.App'
+
+run {
+    standardInput = System.in
+}
